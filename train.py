@@ -133,6 +133,8 @@ def train(args, train_loader, model, criterion, optimizer, epoch):
                 loss += criterion(output, target)
             loss /= len(outputs)
             iou = iou_score(outputs[-1], target)
+            dice_1 = dice_coef(outputs[-1], target)[0]
+            dice_2 = dice_coef(outputs[-1], target)[1]
         else:
             output = model(input)
             loss = criterion(output, target)
